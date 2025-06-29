@@ -1,6 +1,4 @@
-def main():
-    print("Hello from syntra!")
+from src.ui.streamlit_ui import StreamlitFastAPIChatBot
 
-
-if __name__ == "__main__":
-    main()
+chatbot = StreamlitFastAPIChatBot(api_url="http://127.0.0.1:8000/message")
+chatbot.run()

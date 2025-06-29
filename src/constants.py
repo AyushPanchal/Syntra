@@ -1,0 +1,1 @@
+CONSTANT_streamlit_ui_title = "Puch SVNIT"
