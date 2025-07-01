@@ -2,22 +2,19 @@ import uvicorn
 from fastapi import FastAPI, Request
 from src.graphs.graph_builder import GraphBuilder
 from src.llms.groq_llm import GroqLLM
-import os
 from langchain_core.messages import HumanMessage
-
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = FastAPI()
 
-# os.environ["LANGSMITH_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
-
 
 # APIs
 
 @app.post("/message")
-async def create_blogs(request: Request):
+async def query(request: Request):
+
     data = await request.json()
     user_message = data.get("user_message", "")
 
