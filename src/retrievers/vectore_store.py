@@ -17,16 +17,12 @@ class FaissIndex:
         else:
             self.store = None
 
-    def create_store(self, docs: list[str], metadatas: list[dict] = None):
+    def create_store(self, docs: list[Document], metadatas: list[dict] = None):
         """
         Creates a new FAISS store with documents and optional metadata.
         """
-        metadatas = metadatas or [{} for _ in docs]
-        langchain_docs = [
-            Document(page_content=doc, metadata=meta)
-            for doc, meta in zip(docs, metadatas)
-        ]
-        self.store = FAISS.from_documents(langchain_docs, self.embedding)
+
+        self.store = FAISS.from_documents(docs, self.embedding)
         self.store.save_local(self.persist_path)
 
     def add_documents(self, docs: list[str], metadatas: list[dict] = None):
